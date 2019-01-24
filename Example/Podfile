@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'TKWeightModule_Example' do
+  pod 'TKWeightModule', :path => '../'
+
+  target 'TKWeightModule_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
