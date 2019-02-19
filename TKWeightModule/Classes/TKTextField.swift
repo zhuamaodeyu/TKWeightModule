@@ -10,7 +10,7 @@ import UIKit
 
 
 extension UITextField {
-    func tk_SetClearButton(image: String) {
+    func setClearButton(image: String) {
         let clearButton = UIButton(type: .custom)
         clearButton.setImage(UIImage(named: image), for: .normal)
         clearButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
