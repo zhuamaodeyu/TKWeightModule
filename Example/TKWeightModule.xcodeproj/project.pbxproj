@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1035E67723523AA900E5F2FB /* SliderTextViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035E67623523AA900E5F2FB /* SliderTextViewViewController.swift */; };
+		1035E67923523AB200E5F2FB /* TextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035E67823523AB200E5F2FB /* TextFieldViewController.swift */; };
+		1035E67B23523AC000E5F2FB /* WaterFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035E67A23523AC000E5F2FB /* WaterFlowViewController.swift */; };
 		3CC0D161C3C79F6C11ACB87C /* Pods_TKWeightModule_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395F159CC56AE216528F2558 /* Pods_TKWeightModule_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -28,6 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1035E67623523AA900E5F2FB /* SliderTextViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTextViewViewController.swift; sourceTree = "<group>"; };
+		1035E67823523AB200E5F2FB /* TextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldViewController.swift; sourceTree = "<group>"; };
+		1035E67A23523AC000E5F2FB /* WaterFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterFlowViewController.swift; sourceTree = "<group>"; };
 		2F70BA66A9D8A3CC43A6C656 /* Pods-TKWeightModule_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TKWeightModule_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TKWeightModule_Example/Pods-TKWeightModule_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		395F159CC56AE216528F2558 /* Pods_TKWeightModule_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TKWeightModule_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3962757C1F6354097ED7CBA8 /* Pods_TKWeightModule_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TKWeightModule_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +75,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1035E67523523A7500E5F2FB /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				1035E67623523AA900E5F2FB /* SliderTextViewViewController.swift */,
+				1035E67823523AB200E5F2FB /* TextFieldViewController.swift */,
+				1035E67A23523AC000E5F2FB /* WaterFlowViewController.swift */,
+			);
+			path = Sub;
+			sourceTree = "<group>";
+		};
 		155C6C910DA8CF680D594A72 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +118,7 @@
 		607FACD21AFB9204008FA782 /* Example for TKWeightModule */ = {
 			isa = PBXGroup;
 			children = (
+				1035E67523523A7500E5F2FB /* Sub */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -226,6 +243,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -303,7 +321,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TKWeightModule_Example/Pods-TKWeightModule_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-TKWeightModule_Example/Pods-TKWeightModule_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TKWeightModule/TKWeightModule.framework",
 			);
@@ -314,7 +332,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TKWeightModule_Example/Pods-TKWeightModule_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TKWeightModule_Example/Pods-TKWeightModule_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -324,7 +342,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1035E67B23523AC000E5F2FB /* WaterFlowViewController.swift in Sources */,
+				1035E67923523AB200E5F2FB /* TextFieldViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				1035E67723523AA900E5F2FB /* SliderTextViewViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

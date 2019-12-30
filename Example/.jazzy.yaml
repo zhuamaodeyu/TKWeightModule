@@ -1,0 +1,68 @@
+#  名字需要是 .jazzy.yaml  
+# jazzy 直接运行   
+# sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer 
+# xcode-select -print-path
+clean:  
+
+module: TKWeightModule 
+module_version: 0.1.1 
+root_url: https://github.com/zhuamaodeyu
+author: 抓猫的鱼
+author_url: https://github.com/zhuamaodeyu/knowledge
+github_url: https://github.com/zhuamaodeyu/TKWeightModule.git
+ 
+
+title: TKComponentization/TKWeightModule 
+readme: ../README.md  
+
+
+theme: apple  
+output: out/doc 
+
+copyright: '© 2018 [抓猫的鱼](https://github.com/zhuamaodeyu/knowledge) under
+          [open source license](https://github.com/zhuamaodeyu/xxxx/blob/master/LICENSE).'
+
+
+# xcodebuild arguments 
+# xcodebuild_arguments: ["-workspace","TKAuthorityModule.xcworkspace",
+#                         "-scheme","TKAuthorityModule","-sdk","iphonesimulator"]
+
+xcodebuild_arguments:
+  - -workspace
+  - TKWeightModule.xcworkspace
+  - -scheme
+  - TKWeightModule
+  - -sdk 
+  - iphonesimulator
+
+
+hide_documentation_coverage: true 
+documentation: xxxx/*.md  # 都可 
+skip_undocumented: true   
+
+
+# docset 
+docset_icon: xxxx/xxx
+docset_path: xxx/xxx 
+
+
+swift_version: 4.2.0    
+min_acl: public # public open, fileprivate, intxxx 
+
+# exclude:  
+#   - "xxxxx.swift"  
+#   - "xxxx.swift" 
+  
+  
+custom_categories:  
+  - name: View  
+    children:  
+      - FloatingButton
+      - PlaceHolderTextView 
+      - TKErrorTextField 
+      - TKSliderView 
+      - TKTextField 
+      - WaterFlow 
+
+
+

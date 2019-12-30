@@ -8,10 +8,14 @@
 
 import UIKit
 
-class PlaceHolderTextView: UITextView {
 
-    
-    var placehoder : String? {
+/// Place holder TextView
+
+public class PlaceHolderTextView: UITextView {
+
+
+    /// placehoder text
+    public var placehoder : String? {
         
         didSet {
             
@@ -22,14 +26,14 @@ class PlaceHolderTextView: UITextView {
                 
                 return;
             }
-            
-            
             // 重新计算子控件的frame
             setNeedsLayout();
             
         }
     };
-    var placehoderColor : UIColor? {
+
+    /// place holder text Color
+    public var placehoderColor : UIColor = UIColor.black {
         
         didSet {
             
@@ -38,9 +42,10 @@ class PlaceHolderTextView: UITextView {
             
         }
     };
-    private var placehoderLabel : UILabel?;
+
+    private var placehoderLabel : UILabel?
     // 监听内部文字的改变
-    override var text: String! {
+    override public var text: String! {
         
         didSet {
             
@@ -49,11 +54,11 @@ class PlaceHolderTextView: UITextView {
         }
     }
     
-    override var font: UIFont? {
+    override public var font: UIFont? {
         
         didSet {
             
-            self.placehoderLabel?.font = font;
+            self.placehoderLabel?.font = font
             // 重新计算子控件的frame
             setNeedsLayout();
             
@@ -61,7 +66,7 @@ class PlaceHolderTextView: UITextView {
         }
     }
     
-    override var attributedText: NSAttributedString! {
+    override public var attributedText: NSAttributedString! {
         
         didSet {
             
@@ -78,12 +83,13 @@ class PlaceHolderTextView: UITextView {
         
         super.init(frame: frame, textContainer: textContainer);
         // 清空颜色
-        backgroundColor = UIColor.clear;
+        backgroundColor = UIColor.clear
         // 添加一个显示提醒文字的label（显示占位文字的label）
-        placehoderLabel = UILabel();
-        placehoderLabel?.numberOfLines = 0;
-        placehoderLabel?.backgroundColor = UIColor.clear;
-        addSubview(placehoderLabel!);
+        placehoderLabel = UILabel()
+        placehoderLabel?.numberOfLines = 0
+        placehoderLabel?.textColor = placehoderColor
+        placehoderLabel?.backgroundColor = UIColor.clear
+        addSubview(placehoderLabel!)
         
         // 设置颜色的占位文字颜色
         placehoderLabel?.textColor = UIColor.lightGray;
@@ -102,7 +108,7 @@ class PlaceHolderTextView: UITextView {
         
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         
         super.layoutSubviews();
         

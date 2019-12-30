@@ -20,6 +20,16 @@ it, simply add the following line to your Podfile:
 pod 'TKWeightModule'
 ```
 
+## Example 
+### 1. FloatingButton  
+### 2. PlaceHolderTextView 
+### 3.TKErrorTextField  
+### 4. TKSliderView 
+### 5. TKTextField 
+### 6. WaterFlow  
+
+
+
 ## Author
 
 zhuamaodeyu, 1021491936@qq.com

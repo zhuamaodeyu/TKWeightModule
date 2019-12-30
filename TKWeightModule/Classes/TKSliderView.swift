@@ -8,38 +8,38 @@
 import Foundation
 
 
-enum TrackDisableType {
+public enum TrackDisableType {
     case normal
     case dottedLine
 }
 
 fileprivate  let trackdefaultHeight:CGFloat = 2.0
-class SliderView: UIControl {
+public class SliderView: UIControl {
     fileprivate let defaultLabels = ["",""]
-    var trackHeight:CGFloat = trackdefaultHeight
+    public var trackHeight:CGFloat = trackdefaultHeight
     
-    var trackColor: UIColor? = UIColor.gray {
+    public var trackColor: UIColor = UIColor.gray {
         didSet {
-            trackPossibleLayer.backgroundColor = trackColor?.cgColor
+            trackPossibleLayer.backgroundColor = trackColor.cgColor
         }
     }
-    var trackSelectColor: UIColor? = UIColor.yellow {
+    public var trackSelectColor: UIColor = UIColor.yellow {
         didSet {
-            trackSelectedLayer.backgroundColor = trackSelectColor?.cgColor
+            trackSelectedLayer.backgroundColor = trackSelectColor.cgColor
         }
     }
     
     
-    var trackDisableColor: UIColor? = UIColor.gray
-    var trackDisableType:TrackDisableType? = .normal
+    public var trackDisableColor: UIColor = UIColor.gray
+    public var trackDisableType:TrackDisableType = .normal
     
     // 是否启动事件机制
-    var dotsInteractionEnabled: Bool = false
-    var cursorCircleRadius:CGFloat = 0.0
-    var cruxCircleRadius:CGFloat = 0.0
+    public var dotsInteractionEnabled: Bool = false
+    public var cursorCircleRadius:CGFloat = 0.0
+    public var cruxCircleRadius:CGFloat = 0.0
     
     
-    var cruxEnableCount:UInt?{
+    public var cruxEnableCount:UInt? {
         willSet {
             if newValue ?? 0 > labels.count {
                 debugPrint("place set cruxEnableCount need less than cruxCount")
@@ -53,25 +53,25 @@ class SliderView: UIControl {
     }
     
     // 当前选中的个数
-    private(set) var index:UInt? {
+    public private(set) var index:UInt = 0 {
         willSet {
-            if index ?? 0 > cruxEnableCount ?? 0 {
+            if index > cruxEnableCount ?? 0 {
                 debugPrint("place set index need less than cruxEnableCount")
                 return
             }
         }
     }
     
-    var cruxDisableColor:UIColor? = UIColor.gray
-    var cruxSelectColor:UIColor? = UIColor.yellow
-    var cruxSize:CGSize? = CGSize(width:trackdefaultHeight + 2, height: trackdefaultHeight + 2 )
+    public var cruxDisableColor:UIColor = UIColor.gray
+    public var cruxSelectColor:UIColor = UIColor.yellow
+    public var cruxSize:CGSize = CGSize(width:trackdefaultHeight + 2, height: trackdefaultHeight + 2 )
     
     
-    var cursorSize:CGSize? = CGSize(width: trackdefaultHeight + 8 , height: trackdefaultHeight + 8)
-    var cursorColor:UIColor? = UIColor.yellow
+    public var cursorSize:CGSize = CGSize(width: trackdefaultHeight + 8 , height: trackdefaultHeight + 8)
+    public var cursorColor:UIColor = UIColor.yellow
     
     
-    var labels: [String] = [] {
+    public var labels: [String] = [] {
         didSet {
             if labels.isEmpty {
                 labels = defaultLabels
@@ -81,12 +81,12 @@ class SliderView: UIControl {
         }
     }
     // label 操作
-    var labelFont: UIFont? = UIFont.systemFont(ofSize: 11)
-    var labelColor: UIColor? = UIColor.black
-    var selectLabelFont: UIFont? = UIFont.systemFont(ofSize: 14)
-    var selectLabelColor: UIColor? = UIColor.black
-    var disableLabelFont: UIFont? = UIFont.systemFont(ofSize: 11)
-    var disableLabelColor: UIColor? = UIColor.gray
+    public var labelFont: UIFont = UIFont.systemFont(ofSize: 11)
+    public var labelColor: UIColor = UIColor.black
+    public var selectLabelFont: UIFont = UIFont.systemFont(ofSize: 14)
+    public var selectLabelColor: UIColor = UIColor.black
+    public var disableLabelFont: UIFont = UIFont.systemFont(ofSize: 11)
+    public var disableLabelColor: UIColor = UIColor.gray
     
     // UI private property
     // 私有属性
@@ -128,17 +128,17 @@ extension SliderView {
         trackLayer.anchorPoint = CGPoint(x: 0, y: 0)
         
         trackPossibleLayer = CAShapeLayer()
-        trackPossibleLayer.backgroundColor = trackColor?.cgColor
+        trackPossibleLayer.backgroundColor = trackColor.cgColor
         trackPossibleLayer.masksToBounds = true
         trackPossibleLayer.anchorPoint = CGPoint(x: 0, y: 0)
         
         trackSelectedLayer = CAShapeLayer()
-        trackSelectedLayer.backgroundColor = trackSelectColor?.cgColor
+        trackSelectedLayer.backgroundColor = trackSelectColor.cgColor
         trackSelectedLayer.masksToBounds = true
         trackSelectedLayer.anchorPoint = CGPoint(x: 0, y: 0)
         
         cursorLayer = CAShapeLayer()
-        cursorLayer.backgroundColor = cursorColor?.cgColor
+        cursorLayer.backgroundColor = cursorColor.cgColor
         cursorLayer.masksToBounds = true
         
         
@@ -219,7 +219,7 @@ extension SliderView {
 
 extension SliderView {
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         layoutLayersAnimated(animation: animation)
     }
@@ -237,9 +237,9 @@ extension SliderView {
             let Y = trackLayer.frame.maxY + margin
             
             // 设置当前选中的位置
-            if self.index ?? 0 >= 0 {
-                if self.index! < textLayers.count  {
-                    if index != self.index! {
+            if self.index  >= 0 {
+                if self.index < textLayers.count  {
+                    if index != self.index {
                         label.font = self.labelFont
                         label.textColor = self.labelColor
                     }else {
@@ -262,25 +262,25 @@ extension SliderView {
         
         // 计算crux frame
         for (index, item) in cruxLayers.enumerated() {
-            var X = trackLayer.frame.minX + maxTextWidth * CGFloat(index) - (cruxSize?.width)! / 2.0
-            let Y = trackLayer.frame.midY - (cruxSize?.height)! / 2.0
+            var X = trackLayer.frame.minX + maxTextWidth * CGFloat(index) - cruxSize.width / 2.0
+            let Y = trackLayer.frame.midY - cruxSize.height / 2.0
             item.cornerRadius = cruxCircleRadius
             if index == 0 {
                 X = trackLayer.frame.minX
             }else if(index == cruxLayers.count - 1) {
-                X = trackLayer.frame.maxX - (cruxSize?.width ?? 0)
+                X = trackLayer.frame.maxX - cruxSize.width
             }
             // 设置可可选的大小  默认全部可选
             if cruxEnableCount ?? 0 > 0 {
                 if index < Int(cruxEnableCount ?? 0) {
-                    item.backgroundColor = trackColor?.cgColor
+                    item.backgroundColor = trackColor.cgColor
                 }else {
-                    item.backgroundColor = cruxDisableColor?.cgColor
+                    item.backgroundColor = cruxDisableColor.cgColor
                 }
             }else {
-                item.backgroundColor = trackColor?.cgColor
+                item.backgroundColor = trackColor.cgColor
             }
-            item.frame = CGRect(x: X, y: Y, width: (cruxSize?.width)!, height: (cruxSize?.height)!)
+            item.frame = CGRect(x: X, y: Y, width: cruxSize.width, height: cruxSize.height)
         }
         
         // trackPossibleLayer frame
@@ -291,10 +291,10 @@ extension SliderView {
             trackDisableLayer.bounds = CGRect(x: 0, y: 0, width: trackLayer.frame.maxX - trackPossibleLayer.frame.maxX, height: trackLayer.frame.size.height)
             // 是否是虚线
             if trackDisableType == .normal {
-                trackDisableLayer.backgroundColor = trackDisableColor?.cgColor
+                trackDisableLayer.backgroundColor = trackDisableColor.cgColor
                 trackDisableLayer.path = nil
             }else {
-                trackDisableLayer.strokeColor = trackDisableColor?.cgColor
+                trackDisableLayer.strokeColor = trackDisableColor.cgColor
                 trackDisableLayer.fillColor = UIColor.clear.cgColor
                 trackDisableLayer.lineWidth = trackDisableLayer.frame.height
                 trackDisableLayer.lineJoin = kCALineJoinRound
@@ -312,23 +312,23 @@ extension SliderView {
         }
         
         // 设置 index
-        if index ?? 0 > 0 {
-            if index! < cruxEnableCount ?? 1 {
+        if index  > 0 {
+            if index < cruxEnableCount ?? 1 {
                 for (i, layer) in cruxLayers.enumerated() {
-                    if i < index! {
-                        layer.backgroundColor = cruxSelectColor?.cgColor
+                    if i < index {
+                        layer.backgroundColor = cruxSelectColor.cgColor
                     }else {
-                        if i > index! &&  i < cruxEnableCount ?? 0 {
-                            layer.backgroundColor = trackColor?.cgColor
+                        if i > index &&  i < cruxEnableCount ?? 0 {
+                            layer.backgroundColor = trackColor.cgColor
                         }else {
-                            layer.backgroundColor = cruxDisableColor?.cgColor
+                            layer.backgroundColor = cruxDisableColor.cgColor
                         }
                     }
                 }
-                let layer = cruxLayers[Int(index!)]
-                let cursorX = layer.frame.minX - (cursorSize?.width)! / 2.0
-                let cursorY = layer.frame.midY - (cursorSize?.height)! / 2.0
-                cursorLayer.frame = CGRect(x: cursorX, y: cursorY, width: (cursorSize?.width)!, height: (cursorSize?.height)!)
+                let layer = cruxLayers[Int(index)]
+                let cursorX = layer.frame.minX - cursorSize.width / 2.0
+                let cursorY = layer.frame.midY - cursorSize.height / 2.0
+                cursorLayer.frame = CGRect(x: cursorX, y: cursorY, width: cursorSize.width, height: cursorSize.height)
             }
             
             trackSelectedLayer.position = CGPoint(x: -(trackLayer.frame.width - cursorLayer.frame.minX), y: -2)
@@ -336,9 +336,9 @@ extension SliderView {
         } else {
             trackSelectedLayer.position = CGPoint(x: -trackLayer.frame.width, y: -2)
             trackSelectedLayer.bounds = CGRect(x: 0, y: 0, width: trackLayer.frame.width, height: trackLayer.frame.size.height + 4)
-            let cursorX = trackLayer.frame.minX - (cursorSize?.width)! / 2.0
-            let cursorY = trackLayer.frame.midY - (cursorSize?.height)! / 2.0
-            cursorLayer.frame = CGRect(x: cursorX, y: cursorY, width: (cursorSize?.width)!, height: (cursorSize?.height)!)
+            let cursorX = trackLayer.frame.minX - cursorSize.width / 2.0
+            let cursorY = trackLayer.frame.midY - cursorSize.height / 2.0
+            cursorLayer.frame = CGRect(x: cursorX, y: cursorY, width: cursorSize.width, height: cursorSize.height)
         }
         cursorLayer.cornerRadius = cursorCircleRadius
         
@@ -360,7 +360,7 @@ extension SliderView {
 
 // MARK: Touchs
 extension SliderView {
-    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+    override public func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         if labels == defaultLabels {
             return false
         }
@@ -386,12 +386,12 @@ extension SliderView {
                                                     height: self.cursorLayer.frame.height)
                     for (index ,layer) in cruxLayers.enumerated() {
                         if layer.frame.midX < startTouchPosition.x {
-                            layer.backgroundColor = cruxSelectColor?.cgColor
+                            layer.backgroundColor = cruxSelectColor.cgColor
                         }else {
                             if index < Int(self.cruxEnableCount ?? 0) {
-                                layer.backgroundColor = trackColor?.cgColor
+                                layer.backgroundColor = trackColor.cgColor
                             }else {
-                                layer.backgroundColor = cruxDisableColor?.cgColor
+                                layer.backgroundColor = cruxDisableColor.cgColor
                             }
                         }
                         let trackSelectedpositionX = -(trackLayer.frame.width - (startTouchPosition.x - trackLayer.frame.minX))
@@ -404,7 +404,7 @@ extension SliderView {
         }
         return false
     }
-    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+    override public func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         // 进行具体的连续事件处理模式
         let position = touch.location(in: self)
         let trackFrame = trackLayer.frame
@@ -420,12 +420,12 @@ extension SliderView {
                                                 height: self.cursorLayer.frame.height)
                 for (index ,layer) in cruxLayers.enumerated() {
                     if layer.frame.midX < position.x {
-                        layer.backgroundColor = cruxSelectColor?.cgColor
+                        layer.backgroundColor = cruxSelectColor.cgColor
                     }else {
                         if index < Int(self.cruxEnableCount ?? 0) {
-                            layer.backgroundColor = trackColor?.cgColor
+                            layer.backgroundColor = trackColor.cgColor
                         }else {
-                            layer.backgroundColor = cruxDisableColor?.cgColor
+                            layer.backgroundColor = cruxDisableColor.cgColor
                         }
                     }
                     let trackSelectedpositionX = -(trackLayer.frame.width - (position.x - trackLayer.frame.minX))
@@ -436,7 +436,7 @@ extension SliderView {
         }
         return true
     }
-    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+    override public func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         // 根据结束点，然后判断是否需要触发更改事件
         let endTouchPosition = touch?.location(in: self)
         let trackPossibleFrame = trackPossibleLayer.frame
@@ -470,7 +470,7 @@ extension SliderView {
         if minIndex >= cruxEnableCount ?? 0 {
             minIndex = Int(UInt(cruxEnableCount ?? 0) - 1)
         }
-        if minIndex == (index ?? 0) {
+        if minIndex == index {
             self.setNeedsLayout()
             return
         }else {
@@ -483,7 +483,7 @@ extension SliderView {
         }
     }
     
-    override func cancelTracking(with event: UIEvent?) {
+    override public func cancelTracking(with event: UIEvent?) {
         // 取消
         debugPrint("cancelTracking")
     }
