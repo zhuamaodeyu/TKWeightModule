@@ -323,11 +323,13 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TKWeightModule_Example/Pods-TKWeightModule_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/TKFoundationModule/TKFoundationModule.framework",
 				"${BUILT_PRODUCTS_DIR}/TKWeightModule/TKWeightModule.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TKFoundationModule.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TKWeightModule.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

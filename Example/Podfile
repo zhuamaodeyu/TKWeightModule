@@ -2,7 +2,7 @@ use_frameworks!
 
 target 'TKWeightModule_Example' do
   pod 'TKWeightModule', :path => '../'
-  pod 'SnipKit'
+  
   target 'TKWeightModule_Tests' do
     inherit! :search_paths
 
